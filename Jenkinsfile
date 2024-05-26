@@ -1,20 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Print IP and Hostname') {
             steps {
-                echo 'Application build stage...'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Application test stage'
-            }
-        }
-        stage('Run') {
-            steps {
-                echo 'Application run stage'
-                bat 'python sample_code.py' // Use 'bat' for Windows
+                script {
+                    echo "This is my IP"
+                    sh 'curl -s ifconfig.co'
+                    echo "This is my hostname"
+                    sh 'hostname -f'
+                }
             }
         }
     }
